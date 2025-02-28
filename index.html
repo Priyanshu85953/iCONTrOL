@@ -10,7 +10,13 @@
 <body>
     <div class="container">
         <div class="options">
-            <button id="fontToggle" class="btn option">Switch Font</button>
+            <div class="dropdown">
+                <button id="priyanshuBtn" class="btn option">Priyanshu</button>
+                <div id="priyanshuMenu" class="dropdown-content">
+                    <button id="fontToggle" class="dropdown-item">Switch Font</button>
+                    <button id="millisecondsToggle" class="dropdown-item">Hide Milliseconds</button>
+                </div>
+            </div>
         </div>
         <div class="timer-display">
             <span id="hours">00</span>
@@ -18,6 +24,8 @@
             <span id="minutes">00</span>
             <span class="separator">:</span>
             <span id="seconds">00</span>
+            <span class="separator milliseconds-separator">.</span>
+            <span id="milliseconds">000</span>
         </div>
         <div class="buttons">
             <button id="editBtn" class="btn edit">Edit Timer</button>
@@ -38,4 +46,4 @@
     </div>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
