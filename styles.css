@@ -37,15 +37,20 @@ body {
     display: inline-block;
     background: none;
     padding: 0;
-    min-width: 85px;
-    margin: 0 5px;
+    margin: 0 15px; /* Increased margin for better spacing in DS-Digital mode */
     position: relative;
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+/* Fixed widths for all time segments in DS-Digital mode */
+#hours, #minutes, #seconds {
+    width: 160px; /* Increased width for better spacing in DS-Digital mode */
 }
 
 .timer-display .separator {
-    min-width: 5px;
-    margin: 0 -5px;
+    width: 40px; /* Increased width for separators in DS-Digital mode */
+    margin: 0 -10px;
     padding: 0;
     background: none;
     opacity: 0.8;
@@ -58,7 +63,6 @@ body {
 }
 
 .timer-display.normal-font {
-    font-family: 'Arial', sans-serif;
     font-size: 120px;
 }
 
@@ -67,10 +71,48 @@ body {
     font-family: 'Arial', sans-serif !important;
     font-style: normal;
     background: none;
-    min-width: 85px;
-    margin: 0 2px;
+    margin: 0 10px; /* Slightly smaller margin for Arial mode */
     text-shadow: none;
     letter-spacing: normal;
+}
+
+/* Adjust widths for Arial mode */
+.timer-display.normal-font #hours,
+.timer-display.normal-font #minutes,
+.timer-display.normal-font #seconds {
+    width: 140px; /* Slightly smaller width for Arial mode */
+}
+
+.timer-display.normal-font .separator {
+    width: 30px; /* Slightly smaller width for separators in Arial mode */
+}
+
+/* Styles for milliseconds */
+#milliseconds {
+    font-size: 0.5em;
+    width: 100px; /* Increased width for better spacing in DS-Digital mode */
+    text-align: center;
+}
+
+.milliseconds-separator {
+    font-size: 0.5em;
+    width: 30px; /* Increased width for better spacing */
+    margin: 0 -10px;
+}
+
+/* Adjust milliseconds for Arial mode */
+.timer-display.normal-font #milliseconds {
+    width: 90px; /* Slightly smaller width for Arial mode */
+}
+
+.timer-display.normal-font .milliseconds-separator {
+    width: 20px; /* Slightly smaller width for Arial mode */
+}
+
+/* Class to hide milliseconds */
+.timer-display.hide-milliseconds #milliseconds,
+.timer-display.hide-milliseconds .milliseconds-separator {
+    display: none;
 }
 
 .buttons {
@@ -161,4 +203,42 @@ body {
     padding: 8px 16px;
     font-size: 14px;
     border-radius: 4px;
-} 
+}
+
+/* Dropdown styles */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1a1a1a;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 4px;
+    right: 0;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-item {
+    background-color: #1a1a1a;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdown-item:hover {
+    background-color: #333;
+}
