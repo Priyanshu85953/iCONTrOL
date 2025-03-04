@@ -18,6 +18,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 800px;
+    padding: 0 15px; /* Add padding for small screens */
 }
 
 .timer-display {
@@ -119,6 +120,7 @@ body {
     display: flex;
     gap: 10px;
     justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap on small screens */
 }
 
 .btn {
@@ -128,6 +130,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
     transition: opacity 0.3s;
+    margin-bottom: 10px; /* Add margin for wrapped buttons */
 }
 
 .btn:hover {
@@ -168,12 +171,16 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
+    width: 90%; /* Limit width on mobile */
+    max-width: 400px; /* Maximum width on larger screens */
 }
 
 .input-group {
     display: flex;
     gap: 10px;
     margin: 20px 0;
+    flex-wrap: wrap; /* Allow inputs to wrap on very small screens */
+    justify-content: center;
 }
 
 .input-group input {
@@ -183,6 +190,7 @@ body {
     background-color: #2a2a2a;
     color: white;
     border-radius: 4px;
+    margin-bottom: 5px; /* Add margin for wrapped inputs */
 }
 
 .save {
@@ -241,4 +249,111 @@ body {
 
 .dropdown-item:hover {
     background-color: #333;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 768px) {
+    .timer-display {
+        font-size: 100px;
+    }
+    
+    .timer-display.normal-font {
+        font-size: 80px;
+    }
+    
+    #hours, #minutes, #seconds {
+        width: 90px;
+        margin: 0 5px;
+    }
+    
+    .timer-display .separator {
+        width: 20px;
+        margin: 0 -5px;
+    }
+    
+    .timer-display.normal-font #hours,
+    .timer-display.normal-font #minutes,
+    .timer-display.normal-font #seconds {
+        width: 80px;
+    }
+    
+    .timer-display.normal-font .separator {
+        width: 15px;
+    }
+    
+    #milliseconds {
+        width: 60px;
+    }
+    
+    .milliseconds-separator {
+        width: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timer-display {
+        font-size: 60px;
+    }
+    
+    .timer-display.normal-font {
+        font-size: 50px;
+    }
+    
+    #hours, #minutes, #seconds {
+        width: 60px;
+        margin: 0 2px;
+    }
+    
+    .timer-display .separator {
+        width: 15px;
+        margin: 0 -3px;
+    }
+    
+    .timer-display.normal-font #hours,
+    .timer-display.normal-font #minutes,
+    .timer-display.normal-font #seconds {
+        width: 50px;
+    }
+    
+    .timer-display.normal-font .separator {
+        width: 10px;
+    }
+    
+    #milliseconds {
+        width: 40px;
+    }
+    
+    .milliseconds-separator {
+        width: 10px;
+    }
+    
+    .options {
+        top: 10px;
+        right: 10px;
+    }
+    
+    .btn {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 360px) {
+    .timer-display {
+        font-size: 40px;
+    }
+    
+    .timer-display.normal-font {
+        font-size: 35px;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
 }
