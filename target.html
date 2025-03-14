@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Target Number</title>
+    <link href="https://fonts.cdnfonts.com/css/ds-digital" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding: 0 15px;
+        }
+
+        .title {
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 60px;
+            font-weight: bold;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .number-display {
+            font-size: 280px;
+            color: #fff;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Default is digital font */
+        .number-display {
+            font-family: 'DS-Digital', sans-serif;
+            font-style: normal;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.1);
+        }
+
+        #targetNumber {
+            min-width: 400px;
+            letter-spacing: -3px;
+            background: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+
+        /* Normal font class */
+        .number-display.normal-font {
+            font-family: 'Arial', sans-serif;
+            font-size: 200px;
+        }
+
+        .number-display.normal-font #targetNumber {
+            letter-spacing: normal;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .plus {
+            background-color: #4CAF50;
+        }
+
+        .minus {
+            background-color: #ff4444;
+        }
+
+        .reset {
+            background-color: #cc8800;
+            margin-top: 40px;
+            font-size: 14px;
+            padding: 8px 20px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            opacity: 0.8;
+        }
+
+        .font-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .font-toggle:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title"></div>
+        <div class="number-display">
+            <span id="targetNumber">25</span>
+        </div>
+        <div class="buttons">
+            <button class="btn minus" onclick="decrementTarget()">-</button>
+            <button class="btn plus" onclick="incrementTarget()">+</button>
+        </div>
+        <button class="btn reset" onclick="resetTarget()">Reset</button>
+    </div>
+    <button class="back-button" onclick="window.location.href='index.html'">B2P</button>
+    <button class="font-toggle" onclick="toggleFont()">Switch Font</button>
+
+    <script>
+        // Load saved target from localStorage or default to 25
+        let targetValue = parseInt(localStorage.getItem('targetValue')) || 25;
+        const targetDisplay = document.getElementById('targetNumber');
+        const numberDisplay = document.querySelector('.number-display');
+        
+        // Load font preference
+        const isDigitalFont = localStorage.getItem('isDigitalFont') !== 'false';
+        if (!isDigitalFont) {
+            numberDisplay.classList.add('normal-font');
+        }
+
+        // Initialize display with saved target
+        targetDisplay.textContent = targetValue;
+
+        function incrementTarget() {
+            targetValue++;
+            targetDisplay.textContent = targetValue;
+            localStorage.setItem('targetValue', targetValue);
+        }
+
+        function decrementTarget() {
+            if (targetValue > 0) {
+                targetValue--;
+                targetDisplay.textContent = targetValue;
+                localStorage.setItem('targetValue', targetValue);
+            }
+        }
+
+        function resetTarget() {
+            targetValue = 25;
+            targetDisplay.textContent = targetValue;
+            localStorage.setItem('targetValue', targetValue);
+        }
+
+        function toggleFont() {
+            numberDisplay.classList.toggle('normal-font');
+            localStorage.setItem('isDigitalFont', !numberDisplay.classList.contains('normal-font'));
+        }
+    </script>
+</body>
+</html>
