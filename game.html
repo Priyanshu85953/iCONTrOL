@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Win-Loss Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title {
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 60px;
+            font-weight: bold;
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .counter-display {
+            font-size: 120px;
+            color: #fff;
+            margin: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .score {
+            min-width: 150px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .plus {
+            background-color: #4CAF50;
+        }
+
+        .minus {
+            background-color: #ff4444;
+        }
+
+        .reset {
+            background-color: #cc8800;
+            margin-top: 40px;
+            font-size: 15px;
+            padding: 8px 20px;
+        }
+
+        .separator {
+            color: #fff;
+            font-size: 120px;
+        }
+
+        .back-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Win-Lun Calculator</div>
+        <div class="counter-display">
+            <span id="leftScore" class="score">0</span>
+            <span class="separator">-</span>
+            <span id="rightScore" class="score">0</span>
+        </div>
+        <div class="buttons">
+            <button class="btn plus" onclick="incrementLeft()">+</button>
+            <button class="btn minus" onclick="incrementRight()">-</button>
+        </div>
+        <button class="btn reset" onclick="resetScores()">Reset</button>
+    </div>
+    <button class="back-button" onclick="window.location.href='index.html'">B2P</button>
+
+    <script>
+        // Load saved scores from localStorage or default to 0
+        let leftScore = parseInt(localStorage.getItem('leftScore')) || 0;
+        let rightScore = parseInt(localStorage.getItem('rightScore')) || 0;
+        const leftScoreDisplay = document.getElementById('leftScore');
+        const rightScoreDisplay = document.getElementById('rightScore');
+
+        // Initialize display with saved scores
+        leftScoreDisplay.textContent = leftScore;
+        rightScoreDisplay.textContent = rightScore;
+
+        function incrementLeft() {
+            leftScore++;
+            leftScoreDisplay.textContent = leftScore;
+            localStorage.setItem('leftScore', leftScore);
+        }
+
+        function incrementRight() {
+            rightScore++;
+            rightScoreDisplay.textContent = rightScore;
+            localStorage.setItem('rightScore', rightScore);
+        }
+
+        function resetScores() {
+            leftScore = 0;
+            rightScore = 0;
+            leftScoreDisplay.textContent = leftScore;
+            rightScoreDisplay.textContent = rightScore;
+            localStorage.setItem('leftScore', leftScore);
+            localStorage.setItem('rightScore', rightScore);
+        }
+    </script>
+</body>
+</html> 
